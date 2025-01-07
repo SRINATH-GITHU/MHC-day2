@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{% if student %}Edit{% else %}Add{% endif %} Student{% endblock %}
+{% block content %}
+<h1>{% if student %}Edit{% else %}Add{% endif %} Student</h1>
+<form method="post" class="row g-3">
+ {% csrf_token %}
+ <div class="col-md-6">
+ <label for="first_name" class="form-label">First Name</label>
+ <input type="text" name="first_name" class="form-control" value="{{
+student.first_name|default:'' }}">
+ </div>
+ <div class="col-md-6">
+ <label for="last_name" class="form-label">Last Name</label>
+ <input type="text" name="last_name" class="form-control" value="{{
+student.last_name|default:'' }}">
+ </div>
+ <div class="col-md-6">
+ <label for="email" class="form-label">Email</label>
+ <input type="email" name="email" class="form-control" value="{{
+student.email|default:'' }}">
+ </div>
+ <div class="col-md-6">
+ <label for="date_of_birth" class="form-label">Date of Birth</label>
+ <input type="date" name="date_of_birth" class="form-control" value="{{
+student.date_of_birth|default:'' }}">
+ </div>
+ <div class="col-md-6">
+ <label for="grade" class="form-label">Grade</label>
+ <input type="text" name="grade" class="form-control" value="{{
+student.grade|default:'' }}">
+ </div>
+ <div class="col-12">
+ <label for="address" class="form-label">Address</label>
+ <textarea name="address" class="form-control">{{ student.address|default:''
+}}</textarea>
+ </div>
+ <div class="col-12">
+ <button type="submit" class="btn btn-success">Save</button>
+ <a href="{% url 'student-list' %}" class="btn btn-secondary">Cancel</a>
+ </div>
+</form>
+{% endblock %}
